@@ -3,7 +3,54 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Your Name - Portfolio</title>    
+    <link href="" />
+    <link rel="icon" type="image/png" href="./images/logo.png">
+    <title>Toe Toe Aung - Portfolio</title>    
+    <style>
+         body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;        
+            background-color: #8EC5FC;
+            background-image: linear-gradient(62deg, #8EC5FC 0%, #E0C3FC 100%);
+
+        }
+    
+        .container {
+            width: 80%;
+            margin: auto;
+            overflow: hidden;
+        }
+
+        img {
+            width: 100px;
+            height : 40px;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+        form input, form textarea, form button {
+            margin: 0.5rem 0;
+            padding: 0.5rem;
+            font-size: 1rem;
+        }
+        form button {
+            background: #333;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+        }
+        form button:hover {
+            background: #555345;
+        }
+        footer {
+            text-align: center;
+            padding: 1rem;
+            background: #333;
+            color: #fff;
+        }
     </style>
 </head>
 <body>
@@ -15,7 +62,7 @@
 
     <div class="container main-content">
         <div class="info">
-            <img src="./images/ToeToeAung.jpg" alt="Toe Toe Aung" class="profile-pic">
+            <img src="./images/htmlchecker.png" alt="Toe Toe Aung" class="profile-pic">
             <h2>Contact Information</h2>
             <p><strong>Email:</strong>taung@miu.edu</p>
             <p><strong>Phone:</strong> +123-456-7890</p>
@@ -53,7 +100,7 @@
 
         <div class="contact-form">
             <h2>Contact Me</h2>
-            <form action="submit-form.php" method="post">
+            <form method="get" action="#">
                 <label for="name">Name:</label>
                 <input type="text" id="name" name="name" required>
 
