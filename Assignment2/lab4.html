@@ -1,1 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Workshop Registration</title>
+    <style>
+        .header{
+            font-weight:  bold;
+            background-color: #abebc6;
+            height: 50px;
+            text-align: left;                        
+        }
 
+        .underlineclass{
+           text-decoration: underline;
+        }
+
+        .left-panel-1 {
+            grid-area: leftpanel1;       
+       
+        }
+
+        .left-panel-2 {
+            grid-area: leftpanel2;
+           
+        }
+
+        .right-panel-1 {
+            grid-area: rightpanel1;
+        }
+        .right-panel-2 {
+            grid-area: rightpanel2;
+        }
+
+        .footer {
+            grid-area: footer;
+        }
+
+        .grid-container {
+            display: grid;
+            grid-template-areas:
+                'leftpanel1 leftpanel2 rightpanel1 rightpanel2'
+                'footer footer footer footer';                
+            gap: 10px;
+            /* background-color: #2196F3;  */
+            padding: 10px;
+        }
+
+        .textarea {
+            width: 170px;
+            height: 100px;
+        }
+        
+        .selectclass{
+            width: 170px;
+        }
+
+        .required-field::after {
+        content: "*";
+        color: red;
+        }   
+
+        .footer{
+            text-align: center;
+            background-color: #727975;
+            height: 50px;
+        }
+
+        .button{
+            background-color: #abebc6;
+            width: 120px;
+            height: 30px;
+        }
+
+        p {
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header">
+            <h1>Workshop Registration</h1>
+        </div>
+    </header>
+    <div class="underlineclass">Register now while seats are available!</div>
+    <form action="#" method="post">
+    <div class="grid-container">
+    <div class="left-panel-1">
+        <p class="required-field">First Name: </p>
+        <p class="required-field">Last Name:</p>
+        <p class="required-field">Company/Institution:</p>
+        <p class="required-field">Address: </p>        
+        <p>City: </p>
+        <p>State/Province/Region: </p>
+        <p>Country: </p>
+        <p class="required-field">Email: </p>
+        <p class="required-field">Phone Number: </p>
+
+    </div>
+    <div class="left-panel-2">  
+       <P><input type="text" name="firstname" autofocus></P>
+       <p><input type="text" name="lastname"></p>
+       <p> <input type="text" name="company"></p>
+       <p> <textarea class="textarea" name="address"></textarea></p>
+       <p> <select name="state" id="state">
+        <option value="select" class="selectclass">-Select-</option>
+        </select></p>
+        <p> <input type="text" name="city"></p>
+        <p> <input type="text" name="email"></p>
+        <p><input type="text" name="phone"></p>
+    </div>  
+    <div class="right-panel-1">
+        <p class="underlineclass">Lunch</p>
+        <p class="required-field">Meal Preference: </p>
+
+        <p class="underlineclass">Payment Details</p>
+        <p> Payment Mode : </p>
+        <p> DD/Cheque No : </p>
+        <p> Drawn On (Bank Name) : </p>
+        <p> Payable At : </p>
+    </div>   
+    <div class="right-panel-2">
+             <div>  </div>
+             <p> <select name="meal" id="meal">
+            <option value="select" class="selectclass">-Select-</option>
+            <option value="Vegetarian" selected class="selectclass">Vegetarian</option>
+            </select></p>
+            <p> <input type="checkbox" name="cash" value="Cash"> Cash</p>
+            <p> <input type="checkbox" name="cheque" value="Cheque"> Cheque</p>
+            <p> <input type="checkbox" name="demand" value="Demand Draft"> Demand Draft</p>
+
+            <p> <input type="text" name="cheque"></p>
+            <p> <input type="text" name="bankname"></p>
+            <p><input type="text" name="payable"></p>
+    </div>   
+    <div class="footer">
+        <input class="button" type="submit" value="Submit">
+        <input class="button" type="reset">
+    </div>
+    </form>
+</div>
+</body>
+</html>
