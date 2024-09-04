@@ -5,156 +5,240 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Workshop Registration</title>
     <style>
-
-        .header{
-            font-weight:  bold;
-            background-color: #abebc6;
-            height: 50px;
-            text-align: left;                        
-        }
-
-        table{
-            width:70%;
-            height:600px;
-        }
-        
-        .container {
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh; 
-        }       
-
-        .underlineclass{
-           text-decoration: underline;
-           font-weight: normal;
+            height: 100vh;
         }
 
-        td {
+        .container {
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+            max-width: 800px;
+            width: 100%;
+        }       
+
+        .header {
+            background-color: #a0d6b4; 
+            padding: 10px;
+            font-size: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
             font-weight: bold;
+        }
+
+        .dropdown {
+            position: relative;
+            /* display: inline-block;          */
+            font-size: 12px;
+            font-weight: normal;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #f9f9f9;
+            min-width: 160px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 1;
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+
+        }
+
+        .dropdown-content a {
+            color: black;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+        }
+
+        .dropdown-content a:hover {
+            background-color: #f1f1f1;
+        }
+
+        .underlineclass {
+            text-align: center;
+            text-decoration: underline;
+            margin: 10px 0;
+            font-weight: normal;
+        }
+
+        table {
+            width: 100%;
+            margin-top: 10px;
+            font-weight: bold;
+        }
+        
+        td {
+            padding: 10px;
+            vertical-align: top;
+        }
+
+        .normalfont {
+            font-weight: normal;
         }
 
         .required-field::after {
             content: "*";
             color: red;
-        }   
-
-        .custom-button {
-        background-color:  #55d68b; 
-        border: none; 
-        color: white; 
-        padding: 8px 30px; 
-        text-align: center; 
-        font-size: 16px; 
-        margin: 4px 2px; 
-        font-weight: bold;
-      }
-
-      .textarea {
-            width: 170px;
-            height: 100px;
         }
 
-     .normal{
-        font-weight: normal;
-     }
+        input[type="text"], input[type="email"], input[type="tel"], select, textarea {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 14px;
+            box-sizing: border-box;
+        }
 
-    .footer {
-        text-align: center;
-        background-color: #D3D3D3;
-    }
+        textarea {
+            resize: vertical;
+        }
 
+        .custom-button {
+            background-color: #55d68b;
+            border: none;
+            color: white;
+            padding: 10px 20px;
+            text-align: center;
+            font-size: 16px;
+            margin: 5px;
+            font-weight: bold;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+
+        .custom-button:hover {
+            background-color: #45c07a;
+        }
+
+        .footer {
+            text-align: center;
+            background-color: #f4f4f4;
+            padding: 10px;
+            border-radius: 0 0 8px 8px;
+        }
+
+        .footer td {
+            padding: 10px 0;
+        }
+
+        @media screen and (max-width: 768px) {
+            td {
+                display: block;
+                width: 100%;
+            }
+
+            td[colspan="5"] {
+                text-align: center;
+            }
+        }
     </style>
 </head>
 <body>
 <form action="#" method="POST">
     <div class="container">
-    <table>
-        <tr>
-            <td colspan="5" class="header">               
-                <h2>Workshop Registration</h2>            
-            </td>
-        </tr>
-        <tr>
-            <td colspan="5"><p class="underlineclass">Register now while seats are available!</p></td>
-        </tr>
-        <tr>
-            <td class="required-field">First Name </td>
-            <td><input type="text" name="first_name" required></td>
-            <td  colspan="3" class="underlineclass">Lunch</td>          
-        </tr>        
-        <tr>
-            <td class="required-field">Last Name</td>
-            <td><input type="text" name="last_name" required></td>
-            <td>Meal Preference:</td>
-            <td colspan="2">
-                <select name="meal_preference">
-                    <option value="Vegetarian">Vegetarian</option>
-                    <option value="Non-Vegetarian">Non-Vegetarian</option>
-                </select> 
-            </td>
-        </tr>
-        <tr>
-            <td class="required-field">Company/Institution</td>
-            <td><input type="text" name="company" required></td>
-            <td colspan="3" class="underlineclass">Payment Details</td>          
-        </tr>
-        <tr>
-            <td class="required-field">Address </td>
-            <td><textarea class="textarea" name="address" required></textarea></td>
-            <td>Payment Mode:</td>
-            <td rowspan="3" class="normal" colspan="2" >                
-                <input type="checkbox" name="payment_mode" value="Cash"> Cash<br>
-                <input type="checkbox" name="payment_mode" value="Cheque"> Cheque<br>
-                <input type="checkbox" name="payment_mode" value="Demand Draft"> Demand Draft      
-            </td>
-        </tr>           
-        <tr>
-            <td class="required-field">City</td>
-            <td><input type="text" name="city"></td>             
-            <td> DD/Cheque No.: </td>
-            <td colspan="2">  <input type="text" name="chequeno"></td>             
-        </tr>
-        <tr>
-            <td>State / Province / Region</td>
-            <td>
-                <select name="state_province_region">
-                    <option value="">-Select-</option>
-                    <option value="State1">State1</option>
-                    <option value="State2">State2</option>
-                </select>
-            </td>
-            <td>Drawn On(Bank Name):</td>  
-            <td><input type="text" name="bankname"></td>  
-        </tr>
-        <tr>
-            <td>Country</td>
-            <td>
-                <select name="country">
-                    <option value="">-Select-</option>
-                    <option value="Country1">Country1</option>
-                    <option value="Country2">Country2</option>
-                </select>
-            </td>
-            <td>Payable at:</td>  
-            <td><input type="text" name="payable_at"></td> 
-        </tr>
-        <tr>
-            <td class="required-field">Email </td>
-            <td><input type="email" name="email" required></td>
-        </tr>
-        <tr>
-            <td class="required-field">Phone Number</td>
-            <td><input type="tel" name="phone_number" required></td>
-        </tr>
-        <tr class="footer">
-            <td colspan="5">
-                <input class="custom-button" type="submit" value="Submit">
-                <input class="custom-button" type="reset" value="Reset">
-            </td>
-        </tr>
-    </table>
-</div>
+        <div class="header">
+            <span>Workshop Registration </span>
+            <div class="dropdown">
+                <span>More Actions ▼</span>
+                <div class="dropdown-content">
+                    <a href="#">Option 1</a>
+                    <a href="#">Option 2</a>
+                    <a href="#">Option 3</a>
+                </div>
+              </div>
+        </div> 
+        
+        <p class="underlineclass">Register now while seats are available!</p>
+        <table>
+            <tr>
+                <td class="required-field">First Name</td>
+                <td><input type="text" name="first_name" required></td>
+                <td class="underlineclass" colspan="3" style="text-align: left;">Lunch</td>
+            </tr>
+            <tr>
+                <td class="required-field">Last Name</td>
+                <td><input type="text" name="last_name" required></td>
+                <td>Meal Preference:</td>
+                <td colspan="2">
+                    <select name="meal_preference">
+                        <option value="Vegetarian">Vegetarian</option>
+                        <option value="Non-Vegetarian">Non-Vegetarian</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td class="required-field">Company/Institution</td>
+                <td><input type="text" name="company" required></td>
+                <td class="underlineclass" colspan="3" style="text-align: left;">Payment Details</td>
+            </tr>
+            <tr>
+                <td class="required-field">Address</td>
+                <td><textarea name="address" required></textarea></td>
+                <td>Payment Mode:</td>
+                <td colspan="2" class="normalfont">
+                    <input type="checkbox" name="payment_mode" value="Cash"> Cash<br>
+                    <input type="checkbox" name="payment_mode" value="Cheque"> Cheque<br>
+                    <input type="checkbox" name="payment_mode" value="Demand Draft"> Demand Draft
+                </td>
+            </tr>
+            <tr>
+                <td class="required-field">City</td>
+                <td><input type="text" name="city"></td>
+                <td>DD/Cheque No.:</td>
+                <td><input type="text" name="chequeno"></td>
+            </tr>
+            <tr>
+                <td>State / Province / Region</td>
+                <td>
+                    <select name="state_province_region">
+                        <option value="">-Select-</option>
+                        <option value="State1">State1</option>
+                        <option value="State2">State2</option>
+                    </select>
+                </td>
+                <td>Drawn On (Bank Name):</td>
+                <td><input type="text" name="bankname"></td>
+            </tr>
+            <tr>
+                <td>Country</td>
+                <td>
+                    <select name="country">
+                        <option value="">-Select-</option>
+                        <option value="Country1">Country1</option>
+                        <option value="Country2">Country2</option>
+                    </select>
+                </td>
+                <td>Payable at:</td>
+                <td colspan="2"><input type="text" name="payable_at"></td>
+            </tr>
+            <tr>
+                <td class="required-field">Email</td>
+                <td><input type="email" name="email" required></td>
+            </tr>
+            <tr>
+                <td class="required-field">Phone Number</td>
+                <td><input type="tel" name="phone_number" required></td>
+            </tr>
+        </table>
+        <div class="footer">
+            <input class="custom-button" type="submit" value="Submit">
+            <input class="custom-button" type="reset" value="Reset">
+        </div>
+    </div>
 </form>
 </body>
 </html>
