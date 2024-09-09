@@ -12,7 +12,14 @@ const isPrime= async (n) => {
 };
 
 console.log('start');
-isPrime(7)
- .then(console.log)
- .catch(console.error);
+
+(async () => {
+  try {
+    const result = await isPrime(7);
+    console.log(result);
+  } catch (error) {
+    console.error(error);
+  }
+})();
+
 console.log('end');
