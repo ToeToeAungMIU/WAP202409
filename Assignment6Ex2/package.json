@@ -1,0 +1,12 @@
+{
+  "name": "assignment6ex2",
+  "version": "1.0.0",
+  "description": "",
+  "type": "module",
+  "main": "products.js",
+  "scripts": {
+    "start": "node testproducts.js"
+  },
+  "author": "Toe Toe Aung",
+  "license": "ISC"
+}
