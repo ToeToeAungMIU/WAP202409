@@ -7,7 +7,6 @@ Use REST Client or other tools to test your REST APIs
 Write fetch APIs to test the RESTful APIs in Question 1 */
 
 export default class Book {
-
     constructor(public id: string, public title: string,public ISBN: string, public publishedDate: string, public description: string){
     }
 
@@ -45,9 +44,7 @@ export default class Book {
         if(index > -1) {
            books = books.filter(p => p.id !== id);
         } else {
-            throw new Error(`No Product found with id: ${id}`);
+            throw new Error(`No Book found with id: ${id}`);
         }
     }
-
-
 }

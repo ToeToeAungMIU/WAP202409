@@ -10,17 +10,16 @@ document.getElementById('btnCreate').onclick = async function () {
             method: 'POST',
             body: JSON.stringify({
                 "id": "",
-                "title": "Book1",
-                "ISBN": "ISBN00222",
+                "title": ".Net Framework Essentials",
+                "ISBN": "ISBN000000121",
                 "publishedDate": "2024-09-01",
-                "description": "Gone with the Wind --"
+                "description": ".Net Framework Essentials"
             }),
             headers: {
                 'Content-Type': 'application/json'
             }
         });
-
-        // Await the JSON response
+      
         const result = await response.json();
         console.log(result);
     } catch (error) {
@@ -35,8 +34,8 @@ document.getElementById('btnUpdate').onclick = function () {
     fetch(`http://localhost:3000/books/${bookId}`, {
         method: 'PUT',
         body: JSON.stringify({
-            "title": "Updated Book Title",
-            "ISBN": "UpdatedISBN00222",
+            "title": ".Net Framework Essentials",
+            "ISBN": "Updated ISBN00222",
             "publishedDate": "2024-10-01",
             "description": "Updated description of the book"
         }),
