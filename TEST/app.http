@@ -1,0 +1,28 @@
+
+POST http://localhost:3000/books
+Content-Type: application/json
+
+{
+    "title": "Book2",
+    "ISBN": "ISBN0002",
+    "publishedDate" : "9/17/2024",
+    "description": "Vue.js Book"
+}
+
+###
+GET http://localhost:3000/books
+
+###
+GET http://localhost:3000/books/ddc4acfb-b45d-4e1d-8982-f691875ea370
+
+###
+PUT http://localhost:3000/books/ddc4acfb-b45d-4e1d-8982-f691875ea370
+Content-Type: application/json
+
+{
+    "description": "Javascript Book1"
+    
+}
+
+###
+DELETE http://localhost:3000/books/ddc4acfb-b45d-4e1d-8982-f691875ea370
