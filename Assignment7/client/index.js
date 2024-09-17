@@ -1,7 +1,11 @@
 document.getElementById('btnGet').onclick = function () {
     fetch('http://localhost:3000/books')
         .then(response => response.json())
-        .then(data => {console.log(data)});
+      //  .then(data => {            
+            // getBooks(data);
+    //    })
+        //.catch(error => console.error('Error fetching books:', error));
+       .then(data => {console.log(data)});
 }
 
 document.getElementById('btnCreate').onclick = async function () {
@@ -11,7 +15,7 @@ document.getElementById('btnCreate').onclick = async function () {
             body: JSON.stringify({
                 "id": "",
                 "title": ".Net Framework Essentials",
-                "ISBN": "ISBN000000121",
+                "ISBN": "ISBN000000125",
                 "publishedDate": "2024-09-01",
                 "description": ".Net Framework Essentials"
             }),
@@ -30,7 +34,6 @@ document.getElementById('btnCreate').onclick = async function () {
 
 document.getElementById('btnUpdate').onclick = function () {
     const bookId = '5e76c91a-9e1a-403a-ba11-da718fd24beb'; 
-
     fetch(`http://localhost:3000/books/${bookId}`, {
         method: 'PUT',
         body: JSON.stringify({
@@ -65,3 +68,5 @@ document.getElementById('btnDelete').onclick = function () {
     })
     .catch(error => console.error('Error:', error));
 };
+
+

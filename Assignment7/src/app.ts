@@ -15,7 +15,7 @@ const app = express();
 app.use(cors());
 app.use(express.json()); 
 
-app.use(bookRouter);
+app.use('/books',bookRouter);
 
 app.use((req, res, next) => {
     res.json({success: false, error: 'API NOT Found!'});

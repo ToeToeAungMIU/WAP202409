@@ -3,10 +3,10 @@ import {save, getAll, getById, updateById, deleteById} from '../controllers/book
 
 const router = express.Router();
 
-router.post('/books', save);
-router.get('/books', getAll);
-router.get('/books/:id', getById);
-router.put('/books/:id', updateById);
-router.delete('/books/:id', deleteById);
+router.post('/', save);
+router.get('/', getAll);
+router.get('/:id', getById);
+router.put('/:id', updateById);
+router.delete('/:id', deleteById);
 
 export default router;
