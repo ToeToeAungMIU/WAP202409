@@ -1,14 +1,17 @@
 import React, { useState } from 'react';
 import './App.scss';
 import avatar from './images/bozai.png';
+import savatar from './images/Song.jpg'
+import aavatar from './images/Amy.jpg'
+import javatar from './images/Jay.jpg'
 import User from './models/user';
 import Comment from './models/comment';
 
 const defaultList: Comment[] = [
-  new Comment(3, new User('13258165', '', 'Jay Zhou'), 'Nice, well done', '10-18 08:15', 22),
-  new Comment(2, new User('36080105', '', 'Song Xu'), 'I search for you thousands of times, from dawn till dusk.', '11-13 11:29', 56),
+  new Comment(3, new User('13258165', javatar, 'Jay Zhou'), 'Nice, well done', '10-18 08:15', 22),
+  new Comment(2, new User('36080105', savatar, 'Song Xu'), 'I search for you thousands of times, from dawn till dusk.', '11-13 11:29', 56),
   new Comment(1, new User('30009257', avatar, 'John'), 'I told my computer I needed a break... now it will not stop sending me vacation ads.', '10-19 09:00', 89),
-  new Comment(4, new User('30009259', '', 'Amy'), 'Good!.', '6-19 09:00', 10),
+  new Comment(4, new User('30009259', aavatar, 'Amy'), 'Good!.', '6-19 09:00', 10),
 ];
 
 const currentUser: User = {
@@ -41,8 +44,7 @@ const App = () => {
   };
 
   const handlePostComment = () => {
-    if (!newComment.trim()) return; // Ensure the comment is not empty
-  
+    if (!newComment.trim()) return;   
     const maxRpid = comments.reduce((max, comment) => Math.max(comment.rpid, max), 0);
 
     const newEntry: Comment = {
@@ -52,7 +54,6 @@ const App = () => {
       ctime: new Date().toLocaleString(),
       like: 0,
     };
-
     setComments([newEntry, ...comments]);
     setNewComment('');
   };
