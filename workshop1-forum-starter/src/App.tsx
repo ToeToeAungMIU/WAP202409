@@ -8,10 +8,10 @@ import User from './models/user';
 import Comment from './models/comment';
 
 const defaultList: Comment[] = [
-  new Comment(3, new User('13258165', javatar, 'Jay Zhou'), 'Nice, well done', '10-18 08:15', 22),
-  new Comment(2, new User('36080105', savatar, 'Song Xu'), 'I search for you thousands of times, from dawn till dusk.', '11-13 11:29', 56),
-  new Comment(1, new User('30009257', avatar, 'John'), 'I told my computer I needed a break... now it will not stop sending me vacation ads.', '10-19 09:00', 89),
-  new Comment(4, new User('30009259', aavatar, 'Amy'), 'Good!.', '6-19 09:00', 10),
+  new Comment(3, new User('13258165', javatar, 'Jay Zhou'), 'Nice, well done', '9/10/2024, 9:11:45 PM', 22),
+  new Comment(2, new User('36080105', savatar, 'Song Xu'), 'I search for you thousands of times, from dawn till dusk.', '9/11/2024, 9:11:45 PM', 56),
+  new Comment(1, new User('30009257', avatar, 'John'), 'I told my computer I needed a break... now it will not stop sending me vacation ads.', '9/14/2024, 9:11:45 PM', 89),
+  new Comment(4, new User('30009259', aavatar, 'Amy'), 'Good Job!.', '9/15/2024, 9:11:45 PM', 10),
 ];
 
 const currentUser: User = {
@@ -31,8 +31,9 @@ const App = () => {
   const [activeTab, setActiveTab] = useState<string>('hot');
   const [newComment, setNewComment] = useState<string>('');
   
-  // Track the next available rpid
+ 
   const [nextRpid, setNextRpid] = useState<number>(Math.max(...defaultList.map(comment => comment.rpid)) + 1);
+
 
   const handleTabClick = (type: string) => {
     setActiveTab(type);
@@ -47,15 +48,16 @@ const App = () => {
     if (!newComment.trim()) return;   
     const maxRpid = comments.reduce((max, comment) => Math.max(comment.rpid, max), 0);
 
-    const newEntry: Comment = {
-      rpid: maxRpid + 1,
+    const newMessage: Comment = {
+      rpid: nextRpid,
       user: { ...currentUser },
       content: newComment,
       ctime: new Date().toLocaleString(),
       like: 0,
     };
-    setComments([newEntry, ...comments]);
+    setComments([newMessage, ...comments]);
     setNewComment('');
+    setNextRpid(nextRpid + 1);
   };
 
   const handleDelete = (rpid: number) => {

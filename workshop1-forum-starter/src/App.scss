@@ -34,14 +34,14 @@
     .nav-sort {
       display: flex;
       align-items: center;
-      color: #9499a0;
+      color: #132e53;
       font-size: 13px;
 
       .nav-item {
         cursor: pointer;
 
         &:hover {
-          color: #00aeec;
+          color: #1000ec;
         }
 
         &:last-child::after {
@@ -58,7 +58,8 @@
       }
 
       .nav-item.active {
-        color: #18191c;
+        color: #cd16f1;
+        background-color :#fff;
       }
     }
   }
