@@ -1,13 +1,19 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect,useState } from 'react';
 import './App.scss';
 import avatar from './images/bozai.png';
-import savatar from './images/Song.jpg';
-import aavatar from './images/Amy.jpg';
-import javatar from './images/Jay.jpg';
+import savatar from './images/Song.jpg'
+import aavatar from './images/Amy.jpg'
+import javatar from './images/Jay.jpg'
 import User from './models/user';
 import Comment from './models/comment';
 import dayjs from 'dayjs';
-import _ from 'lodash';
+
+const defaultList: Comment[] = [
+  new Comment(3, new User('13258165', javatar, 'Jay Zhou'), 'Nice, well done', '9/10/2024, 9:11:45 PM', 22),
+  new Comment(2, new User('36080105', savatar, 'Song Xu'), 'I search for you thousands of times, from dawn till dusk.', '9/11/2024, 9:11:45 PM', 56),
+  new Comment(1, new User('30009257', avatar, 'John'), 'I told my computer I needed a break... now it will not stop sending me vacation ads.', '9/14/2024, 9:11:45 PM', 89),
+  new Comment(4, new User('30009259', aavatar, 'Amy'), 'Good Job!.', '9/15/2024, 9:11:45 PM', 10),
+];
 
 const currentUser: User = {
   uid: '30009257',
@@ -22,50 +28,34 @@ const tabs = [
 ];
 
 const App = () => {
-
-  const [comments, setComments] = useState<Comment[]>([]);
+  const [comments, setComments] = useState<Comment[]>(defaultList);
   const [activeTab, setActiveTab] = useState<string>('hot');
   const [newComment, setNewComment] = useState<string>(''); 
+  const [nextRpid, setNextRpid] = useState<number>(Math.max(...defaultList.map(comment => comment.rpid)) + 1);
 
-  useEffect(() => {
-    const fetchComments = async () => {
-      try {
-        const res = await fetch('http://localhost:3004/comments');
-        const data = await res.json();       
-        const sortedComments = _.orderBy(data, ['like'], ['desc']);
-        setComments(sortedComments);
-      } catch (error) {
-        console.error('Error fetching list:', error);
-      }
-    };
-  
-    fetchComments();
-  }, []);
-
-
- 
   const handleTabClick = (type: string) => {
     setActiveTab(type);
-    
-    if (type === 'hot') {    
-      setComments(_.orderBy(comments, ['like'], ['desc']));
-    } else {    
-      setComments(_.orderBy(comments, [(comment) => new Date(comment.ctime)], ['desc']));
+    if (type === 'hot') {
+      setComments([...comments].sort((cm1, cm2) => cm2.like - cm1.like));
+    } else {
+      setComments([...comments].sort((cm1, cm2) => new Date(cm2.ctime).getTime() - new Date(cm1.ctime).getTime()));
     }
   };
 
   const handlePostComment = () => {
-    if (!newComment.trim()) return;
+    if (!newComment.trim()) return;   
+    const maxRpid = comments.reduce((max, comment) => Math.max(comment.rpid, max), 0);
 
     const newMessage: Comment = {
-      rpid: comments.length+1,
+      rpid: nextRpid,
       user: { ...currentUser },
       content: newComment,
-      ctime: dayjs().format('YYYY-MM-DD HH:mm:ss'),
+      ctime: new Date().toLocaleString(),
       like: 0,
     };
     setComments([newMessage, ...comments]);
     setNewComment('');
+    setNextRpid(nextRpid + 1);
   };
 
   const handleDelete = (rpid: number) => {
@@ -99,7 +89,7 @@ const App = () => {
           {/* current logged in user profile */}
           <div className="reply-box-avatar">
             <div className="bili-avatar">
-              <img className="bili-avatar-img" src={savatar} alt="Profile" />
+              <img className="bili-avatar-img" src={avatar} alt="Profile" />
             </div>
           </div>
           <div className="reply-box-wrap">
@@ -140,7 +130,7 @@ const App = () => {
                   <span className="reply-content">{comment.content}</span>
                   <div className="reply-info">
                     {/* comment created time */}
-                    <span className="reply-time">{dayjs(comment.ctime).format('YYYY-MM-DD HH:mm:ss')}</span>
+                    <span className="reply-time">{comment.ctime}</span>
                     {/* total likes */}
                     <span className="reply-time">Like: {comment.like}</span>        
                     {
@@ -149,6 +139,7 @@ const App = () => {
                         Delete
                         </span>
                     }                       
+                
                   </div>
                 </div>
               </div>
