@@ -263,10 +263,15 @@
           }
         }
         .delete-btn {
-          cursor: pointer;
+          margin-right: 15px;
+          cursor: pointer;          
           &:hover {
             color: #00aeec;
           }
+        }
+
+        .like-btn {
+          cursor: pointer; 
         }
       }
     }

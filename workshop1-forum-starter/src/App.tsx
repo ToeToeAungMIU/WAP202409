@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import './App.scss';
-import avatar from './images/bozai.png';
+//import avatar from './images/bozai.png';
 import savatar from './images/Song.jpg';
-import aavatar from './images/Amy.jpg';
-import javatar from './images/Jay.jpg';
+//import avatar from './images/Amy.jpg';
+import avatar from './images/Jay.jpg';
 import User from './models/user';
 import Comment from './models/comment';
 import dayjs from 'dayjs';
@@ -71,6 +71,13 @@ const App = () => {
   const handleDelete = (rpid: number) => {
     setComments(comments.filter(comment => comment.rpid !== rpid));
   };
+
+  const handleLike = (rpid: number) => {
+    setComments(comments.map(comment => 
+      comment.rpid === rpid ? { ...comment, like: comment.like + 1 } : comment
+    ));
+  };
+
 
   return (
     <div className="app">
@@ -146,9 +153,13 @@ const App = () => {
                     {
                       comment.user.uid === currentUser.uid &&
                         <span className="delete-btn" onClick={() => handleDelete(comment.rpid)}>
-                        Delete
-                        </span>
-                    }                       
+                        Delete 
+                        </span> 
+                    }
+                                    
+                    <span className="like-btn" onClick={() => handleLike(comment.rpid)}>
+                      👍 Like
+                    </span>
                   </div>
                 </div>
               </div>
