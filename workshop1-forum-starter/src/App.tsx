@@ -1,13 +1,15 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import './App.scss';
+import dayjs from 'dayjs';
+import _ from 'lodash';
+import classnames from 'classnames';
 //import avatar from './images/bozai.png';
 import savatar from './images/Song.jpg';
 //import avatar from './images/Amy.jpg';
 import avatar from './images/Jay.jpg';
 import User from './models/user';
 import Comment from './models/comment';
-import dayjs from 'dayjs';
-import _ from 'lodash';
+import UserComment from './UserComment';
 
 const currentUser: User = {
   uid: '30009257',
@@ -26,6 +28,13 @@ const App = () => {
   const [comments, setComments] = useState<Comment[]>([]);
   const [activeTab, setActiveTab] = useState<string>('hot');
   const [newComment, setNewComment] = useState<string>(''); 
+  const commentInputRef = useRef<HTMLTextAreaElement>(null);
+
+  useEffect(() => {
+    if (commentInputRef.current) {
+      commentInputRef.current.focus();
+    }
+  }, []);
 
   useEffect(() => {
     const fetchComments = async () => {
@@ -66,6 +75,10 @@ const App = () => {
     };
     setComments([newMessage, ...comments]);
     setNewComment('');
+
+    if (commentInputRef.current) {
+      commentInputRef.current.focus();
+    }
   };
 
   const handleDelete = (rpid: number) => {
@@ -91,7 +104,8 @@ const App = () => {
           <li className="nav-sort">
             {tabs.map((tab) => (
               <span key={tab.type} 
-                className={`nav-item ${activeTab === tab.type ? 'active' : ''}`} 
+                // className={`nav-item ${activeTab === tab.type ? 'active' : ''}`}  
+                className={classnames('nav-item', { active: activeTab === tab.type })} 
                 onClick={() => handleTabClick(tab.type)}>
                 {tab.text}              
               </span>
@@ -112,6 +126,7 @@ const App = () => {
           <div className="reply-box-wrap">
             {/* comment */}
             <textarea
+              ref ={commentInputRef}
               className="reply-box-textarea"
               placeholder="tell something..."
               value={newComment}
@@ -125,45 +140,14 @@ const App = () => {
         </div>
         {/* comment list */}
         <div className="reply-list">
-          {comments.map((comment) => (
-            <div className="reply-item" key={comment.rpid}>
-              {/* profile */}
-              <div className="root-reply-avatar">
-                <div className="bili-avatar">
-                  <img
-                    className="bili-avatar-img" src={comment.user.avatar || avatar}
-                    alt="User Profile"
-                  />
-                </div>
-              </div>
-
-              <div className="content-wrap">
-                {/* username */}
-                <div className="user-info">
-                  <div className="user-name">{comment.user.uname}</div>
-                </div>
-                {/* comment content */}
-                <div className="root-reply">
-                  <span className="reply-content">{comment.content}</span>
-                  <div className="reply-info">
-                    {/* comment created time */}
-                    <span className="reply-time">{dayjs(comment.ctime).format('YYYY-MM-DD HH:mm:ss')}</span>
-                    {/* total likes */}
-                    <span className="reply-time">Like: {comment.like}</span>        
-                    {
-                      comment.user.uid === currentUser.uid &&
-                        <span className="delete-btn" onClick={() => handleDelete(comment.rpid)}>
-                        Delete 
-                        </span> 
-                    }
-                                    
-                    <span className="like-btn" onClick={() => handleLike(comment.rpid)}>
-                      👍 Like
-                    </span>
-                  </div>
-                </div>
-              </div>
-            </div>
+        {comments.map((comment) => (
+            <UserComment            
+            key={comment.rpid}
+            comment={comment}
+            currentUser={currentUser}
+            handleDelete={handleDelete}
+            handleLike={handleLike}
+            />
           ))}
         </div>
       </div>
